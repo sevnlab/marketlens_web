@@ -9,16 +9,11 @@ import SignUp from './components/signUp';
 
 function App() {
   return (
-      // <Router>
-      //   <Routes>
-      //     <Route path="/" element={<Login />} />
-      //     <Route path="login" element={<Login />} />
-      //   </Routes>
-      // </Router>
       <div>
           <h1>MainPage</h1>
           <nav>
               {/*Link 태그의 to 속성은 index.js에서 설정해둔 url의 component가 보여지게 한다.*/}
+              {/*to 속성에 index.js에서 설정한 path값을 넣어주면 됨*/}
               <Link to="/login">login</Link> |{" "}
               <Link to="/signUp">signUp</Link>
           </nav>
