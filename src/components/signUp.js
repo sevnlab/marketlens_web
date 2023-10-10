@@ -151,7 +151,6 @@ function postSignUp(data){
     axios({
         method: "POST",
         url: '/signUp',
-        // url: 'http://localhost:7777/signUp',
         data: {
             name: data.name,
             email: data.email,
