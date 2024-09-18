@@ -15,6 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from "axios";
 import {useState} from "react";
 
+import {useNavigate} from "react-router-dom";
+
 function Copyright(props) {
     return (
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
@@ -34,6 +36,9 @@ const defaultTheme = createTheme();
 
 export default function SignUp() {
 
+    // 페이지 이동을 위한 navigate 함수
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -43,7 +48,8 @@ export default function SignUp() {
         const userId = data.get('userId');
         const password = data.get('password');
 
-        postSignUp({ name, email, userId, password });
+        // navigate 를 postSignUp 에 전달
+        postSignUp({ name, email, userId, password, navigate });
     };
 
     return (
@@ -172,9 +178,13 @@ function postSignUp(data){
         // header에서 JSON 타입의 데이터라는 것을 명시
         headers: {'Content-type': 'application/json'}
     }).then((res)=>{
-        alert("성공");
+        alert("회원가입에 성공했습니다.");
+
         // API로 부터 받은 데이터 출력
         console.log(res.data);
+
+        data.navigate('/');
+
     }).catch(error=>{
         console.log("실패");
         console.log(error);
