@@ -19,6 +19,7 @@ root.render(
             <Route path="signIn" element={<SignIn />} />
             <Route path="signUp" element={<SignUp />} />
             <Route path="main" element={<Main />} />  {/* Main 컴포넌트 등록 */}
+            <Route path="/oauth2/callback/naver" element={<SignIn />} /> {/* 콜백 경로가 SignIn 컴포넌트로 연결 */}
         </Routes>
     </Router>
 );

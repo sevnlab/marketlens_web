@@ -8,11 +8,12 @@ function Main() {
     const navigate = useNavigate();
     const [timeLeft, setTimeLeft] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [loginType, setLoginType] = useState(null);
 
     useEffect(() => {
         // localStorage에서 JWT 토큰 가져오기
         const token = localStorage.getItem('token');
-        console.log("JWT 토큰 확인", + token);
+        console.log("JWT 토큰 확인", token);
 
         if (token) {
             try {
@@ -20,11 +21,12 @@ function Main() {
                 const decodedToken = jwtDecode(token);
                 console.log("디코딩된 토큰:", decodedToken);  // 디코딩 결과 확인
                 setUserId(decodedToken.sub);
+                setLoginType(decodedToken.loginType);
 
-                // const expirationTime = decodedToken.exp * 1000;
+                const expirationTime = decodedToken.exp * 1000;
 
                 // 만료 시간을 10초로 설정
-                const expirationTime = Date.now() + 10 * 1000;  // 현재 시간에서 10초 뒤를 만료 시간으로 설정
+                // const expirationTime = Date.now() + 10 * 1000;  // 현재 시간에서 10초 뒤를 만료 시간으로 설정
                 const currentTime = Date.now();
                 const remainingTime = expirationTime - currentTime;
 
@@ -66,7 +68,12 @@ function Main() {
         <div>
             {userId ? (
                 <>
-                    <h1>{userId} 님 환영합니다!</h1>
+                    {/* 로그인 타입에 따라 다른 메시지 표시 */}
+                    <h1>
+                        {/* 사용자명을 어떻게 보여줄건지 정의 필요 */}
+                        {/*{loginType === "naver" ?  "네이버 로그인" : `${userId} 님, 환영합니다!`}*/}
+                        {loginType === "naver" ?  "네이버 로그인" : "일반 로그인"}
+                    </h1>
                     {timeLeft !== null && (
                         <p>남은 시간: {formatTime(timeLeft)}</p>
                     )}
