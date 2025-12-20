@@ -1,6 +1,6 @@
 # Frontend Project 🌐
 
-![React](https://img.shields.io/badge/React-18.2.0-blue?style=flat-square&logo=react)
+![React](https://img.shields.io/badge/React-19.2.0-blue?style=flat-square&logo=react)
 
 ---
 
