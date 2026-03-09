@@ -45,11 +45,11 @@ export default function SignUp() {
 
         const name = data.get('name');
         const email = data.get('email');
-        const userId = data.get('userId');
+        const memberId = data.get('memberId');
         const password = data.get('password');
 
         // navigate 를 postSignUp 에 전달
-        postSignUp({ name, email, userId, password, navigate });
+        postSignUp({ name, email, memberId, password, navigate });
     };
 
     return (
@@ -97,9 +97,9 @@ export default function SignUp() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="userId"
+                                    id="memberId"
                                     label="ID"
-                                    name="userId"
+                                    name="memberId"
                                     autoComplete="ID"
                                 />
                             </Grid>
@@ -172,7 +172,7 @@ function postSignUp(data){
         data: {
             name: data.name,
             email: data.email,
-            userId: data.userId,
+            memberId: data.memberId,
             password: data.password
         },
         // header에서 JSON 타입의 데이터라는 것을 명시
