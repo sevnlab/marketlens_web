@@ -178,10 +178,11 @@ function postSignIn(data) {
             memberId: data.memberId,
             password: data.password
         },
-        headers: {'Content-type': 'application/json'}
+        headers: {'Content-type': 'application/json'},
+        withCredentials: true  // 크로스오리진 요청에서 Set-Cookie 쿠키 저장되려면 필요
     }).then((res) => {
         if (res.data.resCd === 'S000') {
-            // localStorage.setItem("token", res.data.data.token);
+            // 토큰은 서버가 httpOnly Cookie로 관리 → 프론트는 저장 불필요
             localStorage.setItem("name", res.data.data.name);
             data.navigate('/welcome');
         } else {
