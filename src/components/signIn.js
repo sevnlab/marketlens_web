@@ -184,7 +184,7 @@ function postSignIn(data) {
         if (res.data.resCd === 'S000') {
             // 토큰은 서버가 httpOnly Cookie로 관리 → 프론트는 저장 불필요
             localStorage.setItem("name", res.data.data.name);
-            data.navigate('/welcome');
+            data.navigate('/main');
         } else {
             alert(res.data.resMsg);
         }
