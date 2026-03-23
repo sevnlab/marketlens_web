@@ -1,0 +1,48 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="lensInner" cx="38%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#f5efe8" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#c8b89a" stop-opacity="0.03"/>
+    </radialGradient>
+    <linearGradient id="handleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4b896"/>
+      <stop offset="100%" stop-color="#a08060"/>
+    </linearGradient>
+    <filter id="warmGlow">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softWarm">
+      <feGaussianBlur stdDeviation="1" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- 배경 없음 (투명) -->
+
+  <!-- Outer lens ring -->
+  <circle cx="44" cy="43" r="28" fill="url(#lensInner)" stroke="#8a7a6a" stroke-width="3" filter="url(#warmGlow)"/>
+  <!-- Inner soft ring -->
+  <circle cx="44" cy="43" r="20" fill="none" stroke="#8a7a6a" stroke-width="0.8" opacity="0.4"/>
+  <!-- Tiny reticle -->
+  <circle cx="44" cy="43" r="8" fill="none" stroke="#8a7a6a" stroke-width="0.6" opacity="0.4"/>
+  <!-- Crosshair -->
+  <line x1="44" y1="17" x2="44" y2="69" stroke="#8a7a6a" stroke-width="0.6" opacity="0.35"/>
+  <line x1="18" y1="43" x2="70" y2="43" stroke="#8a7a6a" stroke-width="0.6" opacity="0.35"/>
+
+  <!-- Market bars -->
+  <rect x="29" y="50" width="5" height="9"  rx="2.5" fill="#8a7a6a" opacity="0.75"/>
+  <rect x="37" y="42" width="5" height="17" rx="2.5" fill="#9a8a78" opacity="0.85"/>
+  <rect x="45" y="46" width="5" height="13" rx="2.5" fill="#8a7a6a" opacity="0.75"/>
+  <rect x="53" y="37" width="5" height="22" rx="2.5" fill="#b0a090" opacity="0.95" filter="url(#softWarm)"/>
+
+  <!-- Trend line -->
+  <polyline points="31.5,48 39.5,38 47.5,43 55.5,30" fill="none" stroke="#c0a888" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" filter="url(#softWarm)"/>
+  <circle cx="31.5" cy="48" r="2" fill="#c0a888"/>
+  <circle cx="39.5" cy="38" r="2" fill="#c0a888"/>
+  <circle cx="47.5" cy="43" r="2" fill="#c0a888"/>
+  <circle cx="55.5" cy="30" r="2" fill="#c0a888"/>
+
+  <!-- Handle -->
+  <line x1="66" y1="66" x2="82" y2="82" stroke="url(#handleGrad)" stroke-width="6" stroke-linecap="round" filter="url(#warmGlow)"/>
+</svg>

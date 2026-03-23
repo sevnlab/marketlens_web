@@ -9,6 +9,7 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Main from "./components/Main";
 import PrivateRoute from "./components/PrivateRoute";
+import Secret from "./components/Secret";
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
@@ -20,6 +21,7 @@ root.render(
             <Route path="signIn" element={<SignIn />} />
             <Route path="signUp" element={<SignUp />} />
             <Route path="main" element={<PrivateRoute><Main /></PrivateRoute>} />
+            <Route path="/secret" element={<PrivateRoute><Secret /></PrivateRoute>} />
             <Route path="/oauth2/callback/naver" element={<SignIn />} /> {/* 콜백 경로가 SignIn 컴포넌트로 연결 */}
         </Routes>
     </Router>
