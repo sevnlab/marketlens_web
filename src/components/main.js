@@ -99,6 +99,16 @@ export default function Main() {
     }, [navigate]);
 
     useEffect(() => {
+        const handleBeforeUnload = () => {
+            localStorage.removeItem('entryToken');
+            localStorage.removeItem('secretExpiry');
+            navigator.sendBeacon('/api/queue/exit');
+        };
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+    }, []);
+
+    useEffect(() => {
         setName(localStorage.getItem('name') || '');
 
         // 이미 입장 토큰이 있으면 바로 Secret 페이지로

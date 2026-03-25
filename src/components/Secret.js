@@ -51,7 +51,11 @@ export default function Secret() {
     }, [navigate]);
 
     useEffect(() => {
-        const handleUnload = () => navigator.sendBeacon('/api/queue/leave');
+        const handleUnload = () => {
+            localStorage.removeItem('entryToken');
+            localStorage.removeItem('secretExpiry');
+            navigator.sendBeacon('/api/queue/leave');
+        };
         window.addEventListener('beforeunload', handleUnload);
         return () => window.removeEventListener('beforeunload', handleUnload);
     }, []);
