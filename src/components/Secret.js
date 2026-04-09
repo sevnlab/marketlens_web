@@ -33,9 +33,10 @@ export default function Secret() {
     const [purchased, setPurchased] = useState(false);
 
     const handleLeave = async () => {
+        const entryToken = localStorage.getItem('entryToken');
         localStorage.removeItem('entryToken');
-        localStorage.removeItem(EXPIRY_KEY); // 타이머 초기화
-        try { await axios.post('/api/queue/leave', {}, { withCredentials: true }); } catch (e) {}
+        localStorage.removeItem(EXPIRY_KEY);
+        try { await axios.post(`/api/queue/leave?entryToken=${entryToken}`, {}, { withCredentials: true }); } catch (e) {}
         navigate('/main');
     };
 
@@ -52,9 +53,10 @@ export default function Secret() {
 
     useEffect(() => {
         const handleUnload = () => {
+            const entryToken = localStorage.getItem('entryToken');
             localStorage.removeItem('entryToken');
             localStorage.removeItem('secretExpiry');
-            navigator.sendBeacon('/api/queue/leave');
+            navigator.sendBeacon(`/api/queue/leave?entryToken=${entryToken}`);
         };
         window.addEventListener('beforeunload', handleUnload);
         return () => window.removeEventListener('beforeunload', handleUnload);
@@ -79,10 +81,11 @@ export default function Secret() {
     };
 
     const handlePurchase = async () => {
+        const entryToken = localStorage.getItem('entryToken');
         setPurchased(true);
         localStorage.removeItem('entryToken');
-        localStorage.removeItem(EXPIRY_KEY); // 타이머 초기화
-        try { await axios.post('/api/queue/leave', {}, { withCredentials: true }); } catch (e) {}
+        localStorage.removeItem(EXPIRY_KEY);
+        try { await axios.post(`/api/queue/leave?entryToken=${entryToken}`, {}, { withCredentials: true }); } catch (e) {}
     };
 
     if (purchased) {
